@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+         
+    </head>
+    <body>
+        <style type="text/css"> 
+            button[name="run_script"] { 
+              border: none;
+              width: 100px;
+              height: 100px;
+              
+              padding: 10px 10px;
+              
+              cursor: pointer;
+              text-transform: uppercase;
+              font-weight: bold;
+              color:black;
+              
+            }
+            div[name="Winner"]{
+                width: 200px;
+                height: 200px;
+                font-size:large;
+                
+                color:green
+            }
+
+            
+            button[name="run_script"]:hover { 
+              background: #ff6600;
+              
+            } 
+        </style>
+        <button type="button" name="run_script" onclick="myfunction('1')" id="1">press</button>
+        <button type="button" name="run_script" onclick="myfunction('2')" id="2">press</button>
+        <button type="button" name="run_script" onclick="myfunction('3')" id="3">press</button>
+        <p></p>
+        <button type="button" name="run_script" onclick="myfunction('4')" id="4">press</button>
+        <button type="button" name="run_script" onclick="myfunction('5')" id="5">press</button>
+        <button type="button" name="run_script" onclick="myfunction('6')" id="6">press</button>
+        <p></p>
+        <button type="button" name="run_script" onclick="myfunction('7')" id="7">press</button>
+        <button type="button" name="run_script" onclick="myfunction('8')" id="8">press</button>
+        <button type="button" name="run_script" onclick="myfunction('9')" id="9">press</button>
+        <p></p>
+        <b><div hidden = true name = "Winner" id = "name_of_winner" >WINNER</div></b>
+        <script>
+            k=0
+            a = 
+                    [
+                    [1,2,3],
+                    [4,5,6],
+                    [7,8,9]
+                    ];
+            function myfunction(id){
+                    console.clear()
+                    press = document.getElementById(id);
+                    if (k%2 == 0){
+                        press.innerHTML = "X";
+                        key = "X"
+                    }
+                    else{
+                        press.innerHTML = "O";
+                        key = "O"
+                    }
+
+                    k++
+                    press.disabled = true;
+                    if (Number(id)<4){
+                        a[0][Number(id)-1] = key
+                        
+                    }
+                    else if (Number(id)<7){
+                        a[1][Number(id)-4] = key
+                        
+                    }
+                    else {
+                        a[2][Number(id)-7] = key
+                        console.log(a[2][Number(id)-7])
+                    }
+                    console.log(a[0][0]+" "+a[0][1]+" "+a[0][2])
+                    console.log(a[1][0]+" "+a[1][1]+" "+a[1][2])
+                    console.log(a[2][0]+" "+a[2][1]+" "+a[2][2])
+                    
+                    
+                    if (
+                        (a[0][0]==a[0][1] && a[0][1]==a[0][2]) || (a[1][0]==a[1][1] && a[1][1]==a[1][2])
+                     || (a[2][0]==a[2][1] && a[2][1]==a[2][2]) || (a[0][0]==a[1][0] && a[1][0]==a[2][0])
+                     || (a[0][1]==a[1][1] && a[1][1]==a[2][1]) || (a[0][2]==a[1][2] && a[1][2]==a[2][2])
+                     || (a[0][0]==a[1][1] && a[1][1]==a[2][2]) || (a[0][2]==a[1][1] && a[1][1]==a[2][0])
+                     ){
+                        
+                        for (let i = 1; i<10;i++){
+                            
+                            document.getElementById(String(i)).disabled = true
+                            
+                        }
+                        console.log(key + " win")
+                        text = document.getElementById("name_of_winner")
+                        text.innerHTML = key + " IS WINNER"
+                        text.hidden = false
+                        
+                    }    
+                     
+            }
+        </script>
+    </body>
+</html>
